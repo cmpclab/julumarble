@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head><meta charset="UTF-8"><title>주루마블 후원 연동</title></head>
+<body>
+  <h1>🍻 투네이션 후원 주사위</h1>
+  <div id="log">아직 후원이 없어요.</div>
+  <script>
+    const log = document.getElementById("log");
+    const ws = new WebSocket("ws://" + location.host);
+    ws.onmessage = e => {
+      const d = JSON.parse(e.data);
+      log.innerHTML = `${d.nickname}님 후원 → 주사위 🎲 결과: <strong>${d.roll}</strong>`;
+    };
+  </script>
+</body>
+</html>
